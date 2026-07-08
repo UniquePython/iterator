@@ -2,17 +2,17 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-typedef struct ArrayIterator_t
+typedef struct array_iterator_t
 {
     int *arr;
     size_t len;
     size_t currIdx;
 
-} ArrIt;
+} IntArrayIterator;
 
-ArrIt newArrIt(int *arr, size_t arrLen)
+IntArrayIterator newArrIt(int *arr, size_t arrLen)
 {
-    ArrIt arrIt = {0};
+    IntArrayIterator arrIt = {0};
 
     arrIt.arr = arr;
     arrIt.len = arrLen;
@@ -21,7 +21,7 @@ ArrIt newArrIt(int *arr, size_t arrLen)
     return arrIt;
 }
 
-bool arrItNext(ArrIt *arrIt, int *out)
+bool arrItNext(IntArrayIterator *arrIt, int *out)
 {
     if (!arrIt || !out || arrIt->currIdx >= arrIt->len)
         return false;
@@ -34,7 +34,7 @@ int main(void)
 {
     int arr[] = {10, 20, 30, 40};
 
-    ArrIt arrIt = newArrIt(arr, 4);
+    IntArrayIterator arrIt = newArrIt(arr, 4);
 
     for (;;)
     {
