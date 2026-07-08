@@ -1,3 +1,4 @@
+#include "string_iterator.h"
 #include "array_iterator.h"
 #include "iterator.h"
 
@@ -13,6 +14,11 @@ void printFloat(void *elem)
     printf("%g\n", *(float *)elem);
 }
 
+void printChar(void *elem)
+{
+    printf("%c\n", *(char *)elem);
+}
+
 int main(void)
 {
     int intArr[] = {10, 20, 30, 40};
@@ -24,6 +30,11 @@ int main(void)
     Iterator floatIt = newArrayIterator(sizeof(float), floatArr, sizeof floatArr / sizeof *floatArr);
     printAll(floatIt, sizeof(float), printFloat);
     IteratorDestroy(&floatIt);
+
+    char *string = "hello";
+    Iterator stringIt = newStringIterator(string);
+    printAll(stringIt, sizeof(char), printChar);
+    IteratorDestroy(&stringIt);
 
     return 0;
 }

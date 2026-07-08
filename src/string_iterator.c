@@ -28,7 +28,7 @@ bool StringIteratorNext(void *state, void *out)
     return true;
 }
 
-void ArrayIteratorDestroy(void *state)
+void StringIteratorDestroy(void *state)
 {
     free(state);
 }
