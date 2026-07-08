@@ -36,6 +36,9 @@ Iterator newArrayIterator(size_t elemSize, void *arr, size_t arrLen)
 {
     Iterator iterator = {0};
 
+    if (!arr)
+        return iterator;
+
     ArrayIterator *arrayIterator = malloc(sizeof *arrayIterator);
 
     if (!arrayIterator)

@@ -37,6 +37,9 @@ Iterator newStringIterator(const char *string)
 {
     Iterator iterator = {0};
 
+    if (!string)
+        return iterator;
+
     StringIterator *stringIterator = malloc(sizeof *stringIterator);
 
     if (!stringIterator)
