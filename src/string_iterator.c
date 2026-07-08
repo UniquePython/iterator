@@ -1,0 +1,53 @@
+#include "string_iterator.h"
+
+#include <stdlib.h>
+#include <string.h>
+
+struct string_iterator_t
+{
+    const char *string;
+    size_t currIdx;
+};
+
+bool StringIteratorNext(void *state, void *out)
+{
+    StringIterator *strIt = (StringIterator *)state;
+    char *value = (char *)out;
+
+    if (!strIt || !value)
+        return false;
+
+    char ch = strIt->string[strIt->currIdx];
+
+    if (ch == '\0')
+        return false;
+
+    *value = ch;
+    strIt->currIdx++;
+
+    return true;
+}
+
+void ArrayIteratorDestroy(void *state)
+{
+    free(state);
+}
+
+Iterator newStringIterator(const char *string)
+{
+    Iterator iterator = {0};
+
+    StringIterator *stringIterator = malloc(sizeof *stringIterator);
+
+    if (!stringIterator)
+        return iterator;
+
+    stringIterator->string = string;
+    stringIterator->currIdx = 0;
+
+    iterator.state = stringIterator;
+    iterator.next = StringIteratorNext;
+    iterator.destroy = StringIteratorDestroy;
+
+    return iterator;
+}
