@@ -1,3 +1,4 @@
+#include "unique_iterator.h"
 #include "chain_iterator.h"
 #include "zip_iterator.h"
 #include "enumerate_iterator.h"
@@ -62,6 +63,11 @@ void doubleInt(void *in, void *out)
 bool isEven(void *elem)
 {
     return (*(int *)elem) % 2 == 0;
+}
+
+bool intEqual(const void *a, const void *b)
+{
+    return *(int *)a == *(int *)b;
 }
 
 int main(void)
@@ -165,6 +171,15 @@ int main(void)
     IteratorDestroy(&chainIt);
     IteratorDestroy(&intIt8);
     IteratorDestroy(&intIt7);
+
+    // UNIQUE ITERATOR
+    printf("\n=== Unique Iterator ===\n");
+    int intArr9[] = {10, 20, 20, 30, 30, 30, 40, 40, 40, 40};
+    Iterator intIt9 = newArrayIterator(sizeof(int), intArr9, sizeof intArr5 / sizeof *intArr9);
+    Iterator uniqueIt = newUniqueIterator(sizeof(int), intIt9, intEqual);
+    printAll(uniqueIt, sizeof(int), printInt);
+    IteratorDestroy(&uniqueIt);
+    IteratorDestroy(&intIt9);
 
     return 0;
 }
