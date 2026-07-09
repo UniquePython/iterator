@@ -38,7 +38,7 @@ bool RangeIteratorNext(void *state, void *out)
     if (!inBounds)
         return false;
 
-    *(i64 *)out = rangeIt->current;
+    DEREF(i64, out) = rangeIt->current;
     rangeIt->current += rangeIt->step;
     return true;
 }

@@ -4,6 +4,8 @@
 #include <stddef.h>
 #include <stdbool.h>
 
+#define DEREF(type, ptr) (*(type *)(ptr))
+
 typedef struct iterator_t
 {
     void *state;
