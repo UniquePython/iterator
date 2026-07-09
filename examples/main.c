@@ -1,3 +1,4 @@
+#include "zip_iterator.h"
 #include "enumerate_iterator.h"
 #include "range_iterator.h"
 #include "skip_iterator.h"
@@ -41,6 +42,17 @@ void printEnumeratedItem(void *elem)
     printInt((*item).value);
 }
 
+void printZippedItem(void *elem)
+{
+    ZippedItem *item = (ZippedItem *)elem;
+
+    printf("a=");
+    printChar((*item).a);
+
+    printf("b=");
+    printFloat((*item).b);
+}
+
 void doubleInt(void *in, void *out)
 {
     *(int *)out = 2 * (*(int *)in);
@@ -58,15 +70,15 @@ int main(void)
     printAll(intIt1, sizeof(int), printInt);
     IteratorDestroy(&intIt1);
 
-    float floatArr[] = {10.5f, 20.5f, 30.5f, 40.5f};
-    Iterator floatIt = newArrayIterator(sizeof(float), floatArr, sizeof floatArr / sizeof *floatArr);
-    printAll(floatIt, sizeof(float), printFloat);
-    IteratorDestroy(&floatIt);
+    float floatArr1[] = {10.5f, 20.5f, 30.5f, 40.5f};
+    Iterator floatIt1 = newArrayIterator(sizeof(float), floatArr1, sizeof floatArr1 / sizeof *floatArr1);
+    printAll(floatIt1, sizeof(float), printFloat);
+    IteratorDestroy(&floatIt1);
 
-    char *string = "hello";
-    Iterator stringIt = newStringIterator(string);
-    printAll(stringIt, sizeof(char), printChar);
-    IteratorDestroy(&stringIt);
+    char *string1 = "hello";
+    Iterator stringIt1 = newStringIterator(string1);
+    printAll(stringIt1, sizeof(char), printChar);
+    IteratorDestroy(&stringIt1);
 
     int intArr2[] = {10, 20, 30, 40};
     Iterator intIt2 = newArrayIterator(sizeof(int), intArr2, sizeof intArr2 / sizeof *intArr2);
@@ -110,6 +122,16 @@ int main(void)
     printAll(enumerateIt, sizeof(EnumeratedItem), printEnumeratedItem);
     IteratorDestroy(&enumerateIt);
     IteratorDestroy(&intIt6);
+
+    float floatArr2[] = {10.37, 20.37, 30.37, 40.37};
+    Iterator floatIt2 = newArrayIterator(sizeof(float), floatArr2, sizeof floatArr2 / sizeof *floatArr2);
+    char *string2 = "hello";
+    Iterator stringIt2 = newStringIterator(string2);
+    Iterator zipIt = newZipIterator(sizeof(char), stringIt2, sizeof(float), floatIt2);
+    printAll(zipIt, sizeof(ZippedItem), printZippedItem);
+    IteratorDestroy(&zipIt);
+    IteratorDestroy(&stringIt2);
+    IteratorDestroy(&floatIt2);
 
     return 0;
 }
