@@ -14,6 +14,5 @@ typedef struct iterator_t
 } Iterator;
 
 void IteratorDestroy(Iterator *iterator);
-void printAll(Iterator iterator, size_t elemSize, void (*print)(const void *elem));
 
 #endif
