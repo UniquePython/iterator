@@ -175,7 +175,7 @@ int main(void)
     // UNIQUE ITERATOR
     printf("\n=== Unique Iterator ===\n");
     int intArr9[] = {10, 20, 20, 30, 30, 30, 40, 40, 40, 40};
-    Iterator intIt9 = newArrayIterator(sizeof(int), intArr9, sizeof intArr5 / sizeof *intArr9);
+    Iterator intIt9 = newArrayIterator(sizeof(int), intArr9, sizeof intArr9 / sizeof *intArr9);
     Iterator uniqueIt = newUniqueIterator(sizeof(int), intIt9, intEqual);
     printAll(uniqueIt, sizeof(int), printInt);
     IteratorDestroy(&uniqueIt);
