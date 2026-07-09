@@ -11,7 +11,6 @@ int main(void)
     Iterator enumerateIt = NewEnumerateIterator(sizeof(int), intIt);
     printAll(enumerateIt, sizeof(EnumeratedItem), printEnumeratedItem);
     IteratorDestroy(&enumerateIt);
-    IteratorDestroy(&intIt);
 
     return 0;
 }

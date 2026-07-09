@@ -11,7 +11,6 @@ int main(void)
     Iterator skipIt = NewSkipIterator(sizeof(int), intIt, 2);
     printAll(skipIt, sizeof(int), printInt);
     IteratorDestroy(&skipIt);
-    IteratorDestroy(&intIt);
 
     return 0;
 }

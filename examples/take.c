@@ -11,7 +11,6 @@ int main(void)
     Iterator takeIt = NewTakeIterator(sizeof(int), intIt, 2);
     printAll(takeIt, sizeof(int), printInt);
     IteratorDestroy(&takeIt);
-    IteratorDestroy(&intIt);
 
     return 0;
 }

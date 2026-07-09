@@ -39,6 +39,7 @@ void SkipIteratorDestroy(void *state)
 {
     SkipIterator *skipIt = (SkipIterator *)state;
     free(skipIt->buffer);
+    IteratorDestroy(&skipIt->inner);
     free(skipIt);
 }
 

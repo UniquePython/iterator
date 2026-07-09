@@ -73,6 +73,7 @@ void UniqueIteratorDestroy(void *state)
     UniqueIterator *uniqueIt = (UniqueIterator *)state;
     free(uniqueIt->buffer);
     free(uniqueIt->seen);
+    IteratorDestroy(&uniqueIt->inner);
     free(uniqueIt);
 }
 

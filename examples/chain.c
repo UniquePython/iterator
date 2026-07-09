@@ -13,8 +13,6 @@ int main(void)
     Iterator chainIt = NewChainIterator(sizeof(int), intItA, intItB);
     printAll(chainIt, sizeof(int), printInt);
     IteratorDestroy(&chainIt);
-    IteratorDestroy(&intItB);
-    IteratorDestroy(&intItA);
 
     return 0;
 }

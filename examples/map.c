@@ -11,7 +11,6 @@ int main(void)
     Iterator mapIt = NewMapIterator(sizeof(int), intIt, doubleInt);
     printAll(mapIt, sizeof(int), printInt);
     IteratorDestroy(&mapIt);
-    IteratorDestroy(&intIt);
 
     return 0;
 }

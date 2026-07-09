@@ -31,6 +31,8 @@ void ChainIteratorDestroy(void *state)
 {
     ChainIterator *chainIt = (ChainIterator *)state;
     free(chainIt->buffer);
+    IteratorDestroy(&chainIt->innerA);
+    IteratorDestroy(&chainIt->innerB);
     free(chainIt);
 }
 

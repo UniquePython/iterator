@@ -11,7 +11,6 @@ int main(void)
     Iterator uniqueIt = NewUniqueIterator(sizeof(int), intIt, intEqual);
     printAll(uniqueIt, sizeof(int), printInt);
     IteratorDestroy(&uniqueIt);
-    IteratorDestroy(&intIt);
 
     return 0;
 }

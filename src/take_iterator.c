@@ -36,6 +36,7 @@ void TakeIteratorDestroy(void *state)
 {
     TakeIterator *takeIt = (TakeIterator *)state;
     free(takeIt->buffer);
+    IteratorDestroy(&takeIt->inner);
     free(takeIt);
 }
 

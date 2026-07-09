@@ -33,6 +33,7 @@ void EnumerateIteratorDestroy(void *state)
 {
     EnumerateIterator *enumerateIt = (EnumerateIterator *)state;
     free(enumerateIt->buffer);
+    IteratorDestroy(&enumerateIt->inner);
     free(enumerateIt);
 }
 

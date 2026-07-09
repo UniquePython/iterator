@@ -11,7 +11,6 @@ int main(void)
     Iterator filterIt = NewFilterIterator(sizeof(int), intIt, isEven);
     printAll(filterIt, sizeof(int), printInt);
     IteratorDestroy(&filterIt);
-    IteratorDestroy(&intIt);
 
     return 0;
 }

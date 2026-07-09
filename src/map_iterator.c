@@ -31,6 +31,7 @@ void MapIteratorDestroy(void *state)
 {
     MapIterator *mapIt = (MapIterator *)state;
     free(mapIt->buffer);
+    IteratorDestroy(&mapIt->inner);
     free(mapIt);
 }
 

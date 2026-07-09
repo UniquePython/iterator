@@ -40,6 +40,8 @@ void ZipIteratorDestroy(void *state)
     ZipIterator *zipIt = (ZipIterator *)state;
     free(zipIt->bufferA);
     free(zipIt->bufferB);
+    IteratorDestroy(&zipIt->innerA);
+    IteratorDestroy(&zipIt->innerB);
     free(zipIt);
 }
 

@@ -34,6 +34,7 @@ void FilterIteratorDestroy(void *state)
 {
     FilterIterator *filterIt = (FilterIterator *)state;
     free(filterIt->buffer);
+    IteratorDestroy(&filterIt->inner);
     free(filterIt);
 }
 

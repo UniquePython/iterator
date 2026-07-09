@@ -14,8 +14,6 @@ int main(void)
     Iterator zipIt = NewZipIterator(sizeof(char), stringIt, sizeof(float), floatIt);
     printAll(zipIt, sizeof(ZippedItem), printZippedItem);
     IteratorDestroy(&zipIt);
-    IteratorDestroy(&stringIt);
-    IteratorDestroy(&floatIt);
 
     return 0;
 }
