@@ -10,6 +10,6 @@ typedef struct range_iterator_t RangeIterator;
 
 bool RangeIteratorNext(void *state, void *out);
 void RangeIteratorDestroy(void *state);
-Iterator newRangeIterator(int64_t start, int64_t stop, int64_t step, bool inclusive);
+Iterator NewRangeIterator(int64_t start, int64_t stop, int64_t step, bool inclusive);
 
 #endif

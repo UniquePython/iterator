@@ -33,7 +33,7 @@ void StringIteratorDestroy(void *state)
     free(state);
 }
 
-Iterator newStringIterator(const char *string)
+Iterator NewStringIterator(const char *string)
 {
     Iterator iterator = {0};
 

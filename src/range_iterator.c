@@ -48,7 +48,7 @@ void RangeIteratorDestroy(void *state)
     free(state);
 }
 
-Iterator newRangeIterator(int64_t start, int64_t stop, int64_t step, bool inclusive)
+Iterator NewRangeIterator(int64_t start, int64_t stop, int64_t step, bool inclusive)
 {
     Iterator iterator = {0};
 

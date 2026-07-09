@@ -10,6 +10,6 @@ typedef struct filter_iterator_t FilterIterator;
 
 bool FilterIteratorNext(void *state, void *out);
 void FilterIteratorDestroy(void *state);
-Iterator newFilterIterator(size_t inElemSize, Iterator inner, bool (*condition)(void *));
+Iterator NewFilterIterator(size_t inElemSize, Iterator inner, bool (*condition)(void *));
 
 #endif

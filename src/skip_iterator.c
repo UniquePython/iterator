@@ -42,7 +42,7 @@ void SkipIteratorDestroy(void *state)
     free(skipIt);
 }
 
-Iterator newSkipIterator(size_t inElemSize, Iterator inner, size_t nToSkip)
+Iterator NewSkipIterator(size_t inElemSize, Iterator inner, size_t nToSkip)
 {
     Iterator iterator = {0};
 

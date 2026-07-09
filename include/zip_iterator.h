@@ -17,6 +17,6 @@ typedef struct zipped_item_t
 
 bool ZipIteratorNext(void *state, void *out);
 void ZipIteratorDestroy(void *state);
-Iterator newZipIterator(size_t elemSizeA, Iterator innerA, size_t elemSizeB, Iterator innerB);
+Iterator NewZipIterator(size_t elemSizeA, Iterator innerA, size_t elemSizeB, Iterator innerB);
 
 #endif

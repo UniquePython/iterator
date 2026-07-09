@@ -34,7 +34,7 @@ void MapIteratorDestroy(void *state)
     free(mapIt);
 }
 
-Iterator newMapIterator(size_t inElemSize, Iterator inner, void (*transform)(void *, void *))
+Iterator NewMapIterator(size_t inElemSize, Iterator inner, void (*transform)(void *, void *))
 {
     Iterator iterator = {0};
 

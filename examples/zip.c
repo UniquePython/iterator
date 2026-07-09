@@ -8,10 +8,10 @@ int main(void)
 {
     printf("\n=== Zip Iterator ===\n");
     float floatArr[] = {10.37f, 20.37f, 30.37f, 40.37f};
-    Iterator floatIt = newArrayIterator(sizeof(float), floatArr, sizeof floatArr / sizeof *floatArr);
+    Iterator floatIt = NewArrayIterator(sizeof(float), floatArr, sizeof floatArr / sizeof *floatArr);
     char *string = "hello";
-    Iterator stringIt = newStringIterator(string);
-    Iterator zipIt = newZipIterator(sizeof(char), stringIt, sizeof(float), floatIt);
+    Iterator stringIt = NewStringIterator(string);
+    Iterator zipIt = NewZipIterator(sizeof(char), stringIt, sizeof(float), floatIt);
     printAll(zipIt, sizeof(ZippedItem), printZippedItem);
     IteratorDestroy(&zipIt);
     IteratorDestroy(&stringIt);

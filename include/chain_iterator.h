@@ -10,6 +10,6 @@ typedef struct chain_iterator_t ChainIterator;
 
 bool ChainIteratorNext(void *state, void *out);
 void ChainIteratorDestroy(void *state);
-Iterator newChainIterator(size_t inElemSize, Iterator innerA, Iterator innerB);
+Iterator NewChainIterator(size_t inElemSize, Iterator innerA, Iterator innerB);
 
 #endif

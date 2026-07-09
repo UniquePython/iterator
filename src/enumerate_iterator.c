@@ -36,7 +36,7 @@ void EnumerateIteratorDestroy(void *state)
     free(enumerateIt);
 }
 
-Iterator newEnumerateIterator(size_t inElemSize, Iterator inner)
+Iterator NewEnumerateIterator(size_t inElemSize, Iterator inner)
 {
     Iterator iterator = {0};
 

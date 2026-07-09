@@ -6,7 +6,7 @@ int main(void)
 {
     printf("\n=== String Iterator ===\n");
     char *string = "hello";
-    Iterator stringIt = newStringIterator(string);
+    Iterator stringIt = NewStringIterator(string);
     printAll(stringIt, sizeof(char), printChar);
     IteratorDestroy(&stringIt);
 

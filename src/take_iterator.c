@@ -39,7 +39,7 @@ void TakeIteratorDestroy(void *state)
     free(takeIt);
 }
 
-Iterator newTakeIterator(size_t inElemSize, Iterator inner, size_t nToYield)
+Iterator NewTakeIterator(size_t inElemSize, Iterator inner, size_t nToYield)
 {
     Iterator iterator = {0};
 

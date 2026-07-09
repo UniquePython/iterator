@@ -10,6 +10,6 @@ typedef struct take_iterator_t TakeIterator;
 
 bool TakeIteratorNext(void *state, void *out);
 void TakeIteratorDestroy(void *state);
-Iterator newTakeIterator(size_t inElemSize, Iterator inner, size_t nToYield);
+Iterator NewTakeIterator(size_t inElemSize, Iterator inner, size_t nToYield);
 
 #endif

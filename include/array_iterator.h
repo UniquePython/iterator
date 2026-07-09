@@ -10,6 +10,6 @@ typedef struct array_iterator_t ArrayIterator;
 
 bool ArrayIteratorNext(void *state, void *out);
 void ArrayIteratorDestroy(void *state);
-Iterator newArrayIterator(size_t elemSize, void *arr, size_t arrLen);
+Iterator NewArrayIterator(size_t elemSize, void *arr, size_t arrLen);
 
 #endif

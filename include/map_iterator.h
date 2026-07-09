@@ -10,6 +10,6 @@ typedef struct map_iterator_t MapIterator;
 
 bool MapIteratorNext(void *state, void *out);
 void MapIteratorDestroy(void *state);
-Iterator newMapIterator(size_t inElemSize, Iterator inner, void (*transform)(void *, void *));
+Iterator NewMapIterator(size_t inElemSize, Iterator inner, void (*transform)(void *, void *));
 
 #endif

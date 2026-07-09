@@ -43,7 +43,7 @@ void ZipIteratorDestroy(void *state)
     free(zipIt);
 }
 
-Iterator newZipIterator(size_t elemSizeA, Iterator innerA, size_t elemSizeB, Iterator innerB)
+Iterator NewZipIterator(size_t elemSizeA, Iterator innerA, size_t elemSizeB, Iterator innerB)
 {
     Iterator iterator = {0};
 

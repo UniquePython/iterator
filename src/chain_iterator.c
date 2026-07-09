@@ -34,7 +34,7 @@ void ChainIteratorDestroy(void *state)
     free(chainIt);
 }
 
-Iterator newChainIterator(size_t inElemSize, Iterator innerA, Iterator innerB)
+Iterator NewChainIterator(size_t inElemSize, Iterator innerA, Iterator innerB)
 {
     Iterator iterator = {0};
 

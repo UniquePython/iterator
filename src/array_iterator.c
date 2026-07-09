@@ -32,7 +32,7 @@ void ArrayIteratorDestroy(void *state)
     free(state);
 }
 
-Iterator newArrayIterator(size_t elemSize, void *arr, size_t arrLen)
+Iterator NewArrayIterator(size_t elemSize, void *arr, size_t arrLen)
 {
     Iterator iterator = {0};
 

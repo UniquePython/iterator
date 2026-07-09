@@ -9,6 +9,6 @@ typedef struct string_iterator_t StringIterator;
 
 bool StringIteratorNext(void *state, void *out);
 void StringIteratorDestroy(void *state);
-Iterator newStringIterator(const char *string);
+Iterator NewStringIterator(const char *string);
 
 #endif

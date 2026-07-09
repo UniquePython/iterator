@@ -37,7 +37,7 @@ void FilterIteratorDestroy(void *state)
     free(filterIt);
 }
 
-Iterator newFilterIterator(size_t inElemSize, Iterator inner, bool (*condition)(void *))
+Iterator NewFilterIterator(size_t inElemSize, Iterator inner, bool (*condition)(void *))
 {
     Iterator iterator = {0};
 

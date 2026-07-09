@@ -10,6 +10,6 @@ typedef struct skip_iterator_t SkipIterator;
 
 bool SkipIteratorNext(void *state, void *out);
 void SkipIteratorDestroy(void *state);
-Iterator newSkipIterator(size_t inElemSize, Iterator inner, size_t nToSkip);
+Iterator NewSkipIterator(size_t inElemSize, Iterator inner, size_t nToSkip);
 
 #endif

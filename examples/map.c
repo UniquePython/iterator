@@ -7,8 +7,8 @@ int main(void)
 {
     printf("\n=== Map Iterator ===\n");
     int intArr[] = {10, 20, 30, 40};
-    Iterator intIt = newArrayIterator(sizeof(int), intArr, sizeof intArr / sizeof *intArr);
-    Iterator mapIt = newMapIterator(sizeof(int), intIt, doubleInt);
+    Iterator intIt = NewArrayIterator(sizeof(int), intArr, sizeof intArr / sizeof *intArr);
+    Iterator mapIt = NewMapIterator(sizeof(int), intIt, doubleInt);
     printAll(mapIt, sizeof(int), printInt);
     IteratorDestroy(&mapIt);
     IteratorDestroy(&intIt);

@@ -76,7 +76,7 @@ void UniqueIteratorDestroy(void *state)
     free(uniqueIt);
 }
 
-Iterator newUniqueIterator(size_t inElemSize, Iterator inner, bool (*equals)(const void *, const void *))
+Iterator NewUniqueIterator(size_t inElemSize, Iterator inner, bool (*equals)(const void *, const void *))
 {
     Iterator iterator = {0};
 

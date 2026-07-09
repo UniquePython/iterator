@@ -10,6 +10,6 @@ typedef struct unique_iterator_t UniqueIterator;
 
 bool UniqueIteratorNext(void *state, void *out);
 void UniqueIteratorDestroy(void *state);
-Iterator newUniqueIterator(size_t inElemSize, Iterator inner, bool (*equal)(const void *, const void *));
+Iterator NewUniqueIterator(size_t inElemSize, Iterator inner, bool (*equal)(const void *, const void *));
 
 #endif
