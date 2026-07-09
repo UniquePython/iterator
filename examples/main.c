@@ -1,3 +1,4 @@
+#include "take_iterator.h"
 #include "filter_iterator.h"
 #include "map_iterator.h"
 #include "string_iterator.h"
@@ -62,6 +63,13 @@ int main(void)
     printAll(filterIt, sizeof(int), printInt);
     IteratorDestroy(&filterIt);
     IteratorDestroy(&intIt3);
+
+    int intArr4[] = {10, 20, 30, 40};
+    Iterator intIt4 = newArrayIterator(sizeof(int), intArr4, sizeof intArr4 / sizeof *intArr4);
+    Iterator takeIt = newTakeIterator(sizeof(int), intIt4, 2);
+    printAll(takeIt, sizeof(int), printInt);
+    IteratorDestroy(&takeIt);
+    IteratorDestroy(&intIt4);
 
     return 0;
 }
