@@ -1,21 +1,22 @@
 CC := gcc
 
-CFLAGS := -std=c11 -Wall -Wextra -Wpedantic -g -Iinclude
+CFLAGS := -std=c11 -Wall -Wextra -Wpedantic -g -Iinclude -Iexamples
 SANFLAGS := -fsanitize=address,undefined -fno-omit-frame-pointer
 
 SRC := $(wildcard src/*.c)
-BIN := bin/main
+EXAMPLES := $(wildcard examples/*.c)
+BINS := $(patsubst examples/%.c,bin/%,$(EXAMPLES))
 
 .PHONY: all run clean
 
-all: $(BIN)
+all: $(BINS)
 
-$(BIN): $(SRC) examples/main.c
+bin/%: examples/%.c $(SRC)
 	@mkdir -p bin
 	$(CC) $(CFLAGS) $(SANFLAGS) -o $@ $^
 
-run: $(BIN)
-	./$(BIN)
+run: all
+	@for bin in $(BINS); do ./$$bin; done
 
 clean:
 	rm -rf bin
