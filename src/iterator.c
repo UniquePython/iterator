@@ -1,7 +1,5 @@
 #include "iterator.h"
 
-#include "iterator_private.h"
-
 #include <stdlib.h>
 
 void IteratorDestroy(Iterator *iterator)

@@ -1,7 +1,5 @@
 #include "enumerate_iterator.h"
 
-#include "iterator_private.h"
-
 #include <stdlib.h>
 #include <string.h>
 
