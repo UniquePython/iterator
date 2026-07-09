@@ -1,3 +1,4 @@
+#include "skip_iterator.h"
 #include "take_iterator.h"
 #include "filter_iterator.h"
 #include "map_iterator.h"
@@ -70,6 +71,13 @@ int main(void)
     printAll(takeIt, sizeof(int), printInt);
     IteratorDestroy(&takeIt);
     IteratorDestroy(&intIt4);
+
+    int intArr5[] = {10, 20, 30, 40};
+    Iterator intIt5 = newArrayIterator(sizeof(int), intArr5, sizeof intArr5 / sizeof *intArr5);
+    Iterator skipIt = newSkipIterator(sizeof(int), intIt5, 2);
+    printAll(skipIt, sizeof(int), printInt);
+    IteratorDestroy(&skipIt);
+    IteratorDestroy(&intIt5);
 
     return 0;
 }

@@ -1,0 +1,73 @@
+#include "skip_iterator.h"
+
+#include <stdlib.h>
+#include <string.h>
+
+struct skip_iterator_t
+{
+    size_t inElemSize;
+    void *buffer;
+    Iterator inner;
+    size_t nToSkip;
+    size_t nSkipped;
+};
+
+bool SkipIteratorNext(void *state, void *out)
+{
+    SkipIterator *skipIt = (SkipIterator *)state;
+
+    if (!out)
+        return false;
+
+    while (skipIt->nSkipped < skipIt->nToSkip)
+    {
+        skipIt->nSkipped++;
+        if (!skipIt->inner.next(skipIt->inner.state, skipIt->buffer))
+            return false;
+    }
+
+    if (skipIt->inner.next(skipIt->inner.state, skipIt->buffer))
+    {
+        memcpy(out, skipIt->buffer, skipIt->inElemSize);
+        return true;
+    }
+
+    return false;
+}
+
+void SkipIteratorDestroy(void *state)
+{
+    SkipIterator *skipIt = (SkipIterator *)state;
+    free(skipIt->buffer);
+    free(skipIt);
+}
+
+Iterator newSkipIterator(size_t inElemSize, Iterator inner, size_t nToSkip)
+{
+    Iterator iterator = {0};
+
+    SkipIterator *skipIterator = malloc(sizeof *skipIterator);
+
+    if (!skipIterator)
+        return iterator;
+
+    void *buffer = malloc(inElemSize);
+
+    if (!buffer)
+    {
+        free(skipIterator);
+        return iterator;
+    }
+
+    skipIterator->inElemSize = inElemSize;
+    skipIterator->buffer = buffer;
+    skipIterator->inner = inner;
+    skipIterator->nToSkip = nToSkip;
+    skipIterator->nSkipped = 0;
+
+    iterator.state = skipIterator;
+    iterator.next = SkipIteratorNext;
+    iterator.destroy = SkipIteratorDestroy;
+
+    return iterator;
+}
