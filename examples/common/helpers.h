@@ -26,7 +26,7 @@ static inline void printFloat(const void *elem)
 
 static inline void printChar(const void *elem)
 {
-    printf("%c\n", DEREF(char, elem));
+    printf("%c\n", DEREF(const char, elem));
 }
 
 static inline void printEnumeratedItem(const void *elem)
