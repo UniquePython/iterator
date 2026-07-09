@@ -19,14 +19,21 @@ bool RangeIteratorNext(void *state, void *out)
     RangeIterator *rangeIt = (RangeIterator *)state;
 
     bool inBounds;
-    if (rangeIt->inclusive)
-        inBounds = (rangeIt->step > 0)   ? (rangeIt->current <= rangeIt->stop)
-                   : (rangeIt->step < 0) ? (rangeIt->current >= rangeIt->stop)
-                                         : true; // step == 0: always in bounds, infinite repeat
+
+    if (rangeIt->step == 0)
+    {
+        inBounds = true;
+    }
     else
-        inBounds = (rangeIt->step > 0)   ? (rangeIt->current < rangeIt->stop)
-                   : (rangeIt->step < 0) ? (rangeIt->current > rangeIt->stop)
-                                         : true; // step == 0: always in bounds, infinite repeat
+    {
+        int64_t current = rangeIt->current;
+        int64_t stop = rangeIt->stop;
+
+        if (rangeIt->step > 0)
+            inBounds = rangeIt->inclusive ? current <= stop : current < stop;
+        else
+            inBounds = rangeIt->inclusive ? current >= stop : current > stop;
+    }
 
     if (!inBounds)
         return false;
