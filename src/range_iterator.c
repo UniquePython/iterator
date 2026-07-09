@@ -14,7 +14,7 @@ struct range_iterator_t
     bool inclusive;
 };
 
-bool RangeIteratorNext(void *state, void *out)
+bool RangeIteratorNext(void *restrict state, void *restrict out)
 {
     RangeIterator *rangeIt = (RangeIterator *)state;
 

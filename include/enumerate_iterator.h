@@ -15,7 +15,7 @@ typedef struct enumerated_item_t
 
 } EnumeratedItem;
 
-bool EnumerateIteratorNext(void *state, void *out);
+bool EnumerateIteratorNext(void *restrict state, void *restrict out);
 void EnumerateIteratorDestroy(void *state);
 Iterator NewEnumerateIterator(size_t inElemSize, Iterator inner);
 

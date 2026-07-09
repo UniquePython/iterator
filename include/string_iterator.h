@@ -7,7 +7,7 @@
 
 typedef struct string_iterator_t StringIterator;
 
-bool StringIteratorNext(void *state, void *out);
+bool StringIteratorNext(void *restrict state, void *restrict out);
 void StringIteratorDestroy(void *state);
 Iterator NewStringIterator(const char *string);
 

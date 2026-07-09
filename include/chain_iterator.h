@@ -8,7 +8,7 @@
 
 typedef struct chain_iterator_t ChainIterator;
 
-bool ChainIteratorNext(void *state, void *out);
+bool ChainIteratorNext(void *restrict state, void *restrict out);
 void ChainIteratorDestroy(void *state);
 Iterator NewChainIterator(size_t inElemSize, Iterator innerA, Iterator innerB);
 

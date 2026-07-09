@@ -9,27 +9,27 @@
 #include <stdint.h>
 #include <inttypes.h>
 
-static inline void printInt(void *elem)
+static inline void printInt(const void *elem)
 {
     printf("%d\n", DEREF(int, elem));
 }
 
-static inline void printI64(void *elem)
+static inline void printI64(const void *elem)
 {
     printf("%" PRId64 "\n", DEREF(int64_t, elem));
 }
 
-static inline void printFloat(void *elem)
+static inline void printFloat(const void *elem)
 {
     printf("%g\n", DEREF(float, elem));
 }
 
-static inline void printChar(void *elem)
+static inline void printChar(const void *elem)
 {
     printf("%c\n", DEREF(char, elem));
 }
 
-static inline void printEnumeratedItem(void *elem)
+static inline void printEnumeratedItem(const void *elem)
 {
     EnumeratedItem *item = (EnumeratedItem *)elem;
 
@@ -37,7 +37,7 @@ static inline void printEnumeratedItem(void *elem)
     printInt((*item).value);
 }
 
-static inline void printZippedItem(void *elem)
+static inline void printZippedItem(const void *elem)
 {
     ZippedItem *item = (ZippedItem *)elem;
 
@@ -48,12 +48,12 @@ static inline void printZippedItem(void *elem)
     printFloat((*item).b);
 }
 
-static inline void doubleInt(void *in, void *out)
+static inline void doubleInt(const void *in, const void *out)
 {
     DEREF(int, out) = 2 * DEREF(int, in);
 }
 
-static inline bool isEven(void *elem)
+static inline bool isEven(const void *elem)
 {
     return DEREF(int, elem) % 2 == 0;
 }

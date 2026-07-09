@@ -14,7 +14,7 @@ void IteratorDestroy(Iterator *iterator)
     iterator->destroy = NULL;
 }
 
-void printAll(Iterator iterator, size_t elemSize, void (*print)(void *elem))
+void printAll(Iterator iterator, size_t elemSize, void (*print)(const void *elem))
 {
     void *out = malloc(elemSize);
     if (!out)

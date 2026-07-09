@@ -9,11 +9,11 @@
 typedef struct iterator_t
 {
     void *state;
-    bool (*next)(void *state, void *out);
+    bool (*next)(void *restrict state, void *restrict out);
     void (*destroy)(void *state);
 } Iterator;
 
 void IteratorDestroy(Iterator *iterator);
-void printAll(Iterator iterator, size_t elemSize, void (*print)(void *elem));
+void printAll(Iterator iterator, size_t elemSize, void (*print)(const void *elem));
 
 #endif

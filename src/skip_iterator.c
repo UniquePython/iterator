@@ -12,7 +12,7 @@ struct skip_iterator_t
     size_t nSkipped;
 };
 
-bool SkipIteratorNext(void *state, void *out)
+bool SkipIteratorNext(void *restrict state, void *restrict out)
 {
     SkipIterator *skipIt = (SkipIterator *)state;
 

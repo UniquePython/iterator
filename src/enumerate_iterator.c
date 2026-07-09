@@ -11,7 +11,7 @@ struct enumerate_iterator_t
     size_t index;
 };
 
-bool EnumerateIteratorNext(void *state, void *out)
+bool EnumerateIteratorNext(void *restrict state, void *restrict out)
 {
     EnumerateIterator *enumerateIt = (EnumerateIterator *)state;
 

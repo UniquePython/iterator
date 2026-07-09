@@ -9,7 +9,7 @@ struct string_iterator_t
     size_t currIdx;
 };
 
-bool StringIteratorNext(void *state, void *out)
+bool StringIteratorNext(void *restrict state, void *restrict out)
 {
     StringIterator *strIt = (StringIterator *)state;
     char *value = (char *)out;

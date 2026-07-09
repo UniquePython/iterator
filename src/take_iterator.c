@@ -12,7 +12,7 @@ struct take_iterator_t
     size_t nYielded;
 };
 
-bool TakeIteratorNext(void *state, void *out)
+bool TakeIteratorNext(void *restrict state, void *restrict out)
 {
     TakeIterator *takeIt = (TakeIterator *)state;
 

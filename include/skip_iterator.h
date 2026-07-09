@@ -8,7 +8,7 @@
 
 typedef struct skip_iterator_t SkipIterator;
 
-bool SkipIteratorNext(void *state, void *out);
+bool SkipIteratorNext(void *restrict state, void *restrict out);
 void SkipIteratorDestroy(void *state);
 Iterator NewSkipIterator(size_t inElemSize, Iterator inner, size_t nToSkip);
 

@@ -11,7 +11,7 @@ struct array_iterator_t
     size_t currIdx;
 };
 
-bool ArrayIteratorNext(void *state, void *out)
+bool ArrayIteratorNext(void *restrict state, void *restrict out)
 {
     ArrayIterator *arrIt = (ArrayIterator *)state;
 

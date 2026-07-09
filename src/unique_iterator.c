@@ -8,14 +8,14 @@ struct unique_iterator_t
     size_t inElemSize;
     void *buffer;
     Iterator inner;
-    bool (*equals)(const void *a, const void *b);
+    bool (*equals)(const void *restrict a, const void *restrict b);
 
     void *seen;
     size_t seenCount;
     size_t seenCapacity;
 };
 
-bool UniqueIteratorNext(void *state, void *out)
+bool UniqueIteratorNext(void *restrict state, void *restrict out)
 {
     UniqueIterator *uniqueIt = (UniqueIterator *)state;
 
@@ -76,7 +76,7 @@ void UniqueIteratorDestroy(void *state)
     free(uniqueIt);
 }
 
-Iterator NewUniqueIterator(size_t inElemSize, Iterator inner, bool (*equals)(const void *, const void *))
+Iterator NewUniqueIterator(size_t inElemSize, Iterator inner, bool (*equals)(const void *restrict a, const void *restrict b))
 {
     Iterator iterator = {0};
 

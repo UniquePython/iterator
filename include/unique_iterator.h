@@ -8,8 +8,8 @@
 
 typedef struct unique_iterator_t UniqueIterator;
 
-bool UniqueIteratorNext(void *state, void *out);
+bool UniqueIteratorNext(void *restrict state, void *restrict out);
 void UniqueIteratorDestroy(void *state);
-Iterator NewUniqueIterator(size_t inElemSize, Iterator inner, bool (*equal)(const void *, const void *));
+Iterator NewUniqueIterator(size_t inElemSize, Iterator inner, bool (*equal)(const void *restrict a, const void *restrict b));
 
 #endif

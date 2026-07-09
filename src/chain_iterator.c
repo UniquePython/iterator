@@ -11,7 +11,7 @@ struct chain_iterator_t
     Iterator innerB;
 };
 
-bool ChainIteratorNext(void *state, void *out)
+bool ChainIteratorNext(void *restrict state, void *restrict out)
 {
     ChainIterator *chainIt = (ChainIterator *)state;
 

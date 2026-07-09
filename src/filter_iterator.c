@@ -8,10 +8,10 @@ struct filter_iterator_t
     size_t inElemSize;
     void *buffer;
     Iterator inner;
-    bool (*condition)(void *elem);
+    bool (*condition)(const void *elem);
 };
 
-bool FilterIteratorNext(void *state, void *out)
+bool FilterIteratorNext(void *restrict state, void *restrict out)
 {
     FilterIterator *filterIt = (FilterIterator *)state;
 
@@ -37,7 +37,7 @@ void FilterIteratorDestroy(void *state)
     free(filterIt);
 }
 
-Iterator NewFilterIterator(size_t inElemSize, Iterator inner, bool (*condition)(void *))
+Iterator NewFilterIterator(size_t inElemSize, Iterator inner, bool (*condition)(const void *))
 {
     Iterator iterator = {0};
 

@@ -14,7 +14,7 @@ struct zip_iterator_t
     Iterator innerB;
 };
 
-bool ZipIteratorNext(void *state, void *out)
+bool ZipIteratorNext(void *restrict state, void *restrict out)
 {
     ZipIterator *zipIt = (ZipIterator *)state;
 
