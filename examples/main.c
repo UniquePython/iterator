@@ -1,9 +1,11 @@
+#include "filter_iterator.h"
 #include "map_iterator.h"
 #include "string_iterator.h"
 #include "array_iterator.h"
 #include "iterator.h"
 
 #include <stdio.h>
+#include <stdbool.h>
 
 void printInt(void *elem)
 {
@@ -23,6 +25,11 @@ void printChar(void *elem)
 void doubleInt(void *in, void *out)
 {
     *(int *)out = 2 * (*(int *)in);
+}
+
+bool isEven(void *elem)
+{
+    return (*(int *)elem) % 2 == 0;
 }
 
 int main(void)
@@ -48,6 +55,13 @@ int main(void)
     printAll(mapIt, sizeof(int), printInt);
     IteratorDestroy(&mapIt);
     IteratorDestroy(&intIt2);
+
+    int intArr3[] = {1, 2, 3, 4};
+    Iterator intIt3 = newArrayIterator(sizeof(int), intArr3, sizeof intArr3 / sizeof *intArr3);
+    Iterator filterIt = newFilterIterator(sizeof(int), intIt3, isEven);
+    printAll(filterIt, sizeof(int), printInt);
+    IteratorDestroy(&filterIt);
+    IteratorDestroy(&intIt3);
 
     return 0;
 }
