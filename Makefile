@@ -1,6 +1,6 @@
 CC := gcc
 
-CFLAGS := -std=c11 -Wall -Wextra -Wpedantic -g -Iinclude -Iexamples
+CFLAGS := -std=c11 -Wall -Wextra -Wpedantic -Wcast-qual -g -Iinclude -Iexamples
 SANFLAGS := -fsanitize=address,undefined -fno-omit-frame-pointer
 
 SRC := $(wildcard src/*.c)

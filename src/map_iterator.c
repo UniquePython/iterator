@@ -8,7 +8,7 @@ struct map_iterator_t
     size_t inElemSize;
     void *buffer;
     Iterator inner;
-    void (*transform)(const void *restrict in, const void *restrict out);
+    void (*transform)(const void *restrict in, void *restrict out);
 };
 
 bool MapIteratorNext(void *restrict state, void *restrict out)
@@ -34,7 +34,7 @@ void MapIteratorDestroy(void *state)
     free(mapIt);
 }
 
-Iterator NewMapIterator(size_t inElemSize, Iterator inner, void (*transform)(const void *restrict in, const void *restrict out))
+Iterator NewMapIterator(size_t inElemSize, Iterator inner, void (*transform)(const void *restrict in, void *restrict out))
 {
     Iterator iterator = {0};
 

@@ -11,17 +11,17 @@
 
 static inline void printInt(const void *elem)
 {
-    printf("%d\n", DEREF(int, elem));
+    printf("%d\n", DEREF(const int, elem));
 }
 
 static inline void printI64(const void *elem)
 {
-    printf("%" PRId64 "\n", DEREF(int64_t, elem));
+    printf("%" PRId64 "\n", DEREF(const int64_t, elem));
 }
 
 static inline void printFloat(const void *elem)
 {
-    printf("%g\n", DEREF(float, elem));
+    printf("%g\n", DEREF(const float, elem));
 }
 
 static inline void printChar(const void *elem)
@@ -31,7 +31,7 @@ static inline void printChar(const void *elem)
 
 static inline void printEnumeratedItem(const void *elem)
 {
-    EnumeratedItem *item = (EnumeratedItem *)elem;
+    const EnumeratedItem *item = (const EnumeratedItem *)elem;
 
     printf("idx=%zu, val=", (*item).index);
     printInt((*item).value);
@@ -39,7 +39,7 @@ static inline void printEnumeratedItem(const void *elem)
 
 static inline void printZippedItem(const void *elem)
 {
-    ZippedItem *item = (ZippedItem *)elem;
+    const ZippedItem *item = (const ZippedItem *)elem;
 
     printf("a=");
     printChar((*item).a);
@@ -48,19 +48,19 @@ static inline void printZippedItem(const void *elem)
     printFloat((*item).b);
 }
 
-static inline void doubleInt(const void *in, const void *out)
+static inline void doubleInt(const void *in, void *out)
 {
-    DEREF(int, out) = 2 * DEREF(int, in);
+    DEREF(int, out) = 2 * DEREF(const int, in);
 }
 
 static inline bool isEven(const void *elem)
 {
-    return DEREF(int, elem) % 2 == 0;
+    return DEREF(const int, elem) % 2 == 0;
 }
 
 static inline bool intEqual(const void *a, const void *b)
 {
-    return DEREF(int, a) == DEREF(int, b);
+    return DEREF(const int, a) == DEREF(const int, b);
 }
 
 #endif
