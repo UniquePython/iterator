@@ -1,3 +1,4 @@
+#include "range_iterator.h"
 #include "skip_iterator.h"
 #include "take_iterator.h"
 #include "filter_iterator.h"
@@ -8,10 +9,17 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdint.h>
+#include <inttypes.h>
 
 void printInt(void *elem)
 {
     printf("%d\n", *(int *)elem);
+}
+
+void printI64(void *elem)
+{
+    printf("%" PRId64 "\n", *(int64_t *)elem);
 }
 
 void printFloat(void *elem)
@@ -78,6 +86,14 @@ int main(void)
     printAll(skipIt, sizeof(int), printInt);
     IteratorDestroy(&skipIt);
     IteratorDestroy(&intIt5);
+
+    Iterator rangeItInc = newRangeIterator(2, 10, 2, true);
+    printAll(rangeItInc, sizeof(int64_t), printI64);
+    IteratorDestroy(&rangeItInc);
+
+    Iterator rangeItExc = newRangeIterator(2, 10, 2, false);
+    printAll(rangeItExc, sizeof(int64_t), printI64);
+    IteratorDestroy(&rangeItExc);
 
     return 0;
 }
