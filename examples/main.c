@@ -1,3 +1,4 @@
+#include "enumerate_iterator.h"
 #include "range_iterator.h"
 #include "skip_iterator.h"
 #include "take_iterator.h"
@@ -30,6 +31,14 @@ void printFloat(void *elem)
 void printChar(void *elem)
 {
     printf("%c\n", *(char *)elem);
+}
+
+void printEnumeratedItem(void *elem)
+{
+    EnumeratedItem *item = (EnumeratedItem *)elem;
+
+    printf("idx=%zu, val=", (*item).index);
+    printInt((*item).value);
 }
 
 void doubleInt(void *in, void *out)
@@ -94,6 +103,13 @@ int main(void)
     Iterator rangeItExc = newRangeIterator(2, 10, 2, false);
     printAll(rangeItExc, sizeof(int64_t), printI64);
     IteratorDestroy(&rangeItExc);
+
+    int intArr6[] = {10, 20, 30, 40};
+    Iterator intIt6 = newArrayIterator(sizeof(int), intArr6, sizeof intArr6 / sizeof *intArr6);
+    Iterator enumerateIt = newEnumerateIterator(sizeof(int), intIt6);
+    printAll(enumerateIt, sizeof(int), printEnumeratedItem);
+    IteratorDestroy(&enumerateIt);
+    IteratorDestroy(&intIt6);
 
     return 0;
 }
