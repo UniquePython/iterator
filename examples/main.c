@@ -107,7 +107,7 @@ int main(void)
     int intArr6[] = {10, 20, 30, 40};
     Iterator intIt6 = newArrayIterator(sizeof(int), intArr6, sizeof intArr6 / sizeof *intArr6);
     Iterator enumerateIt = newEnumerateIterator(sizeof(int), intIt6);
-    printAll(enumerateIt, sizeof(int), printEnumeratedItem);
+    printAll(enumerateIt, sizeof(EnumeratedItem), printEnumeratedItem);
     IteratorDestroy(&enumerateIt);
     IteratorDestroy(&intIt6);
 
