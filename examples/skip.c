@@ -12,7 +12,7 @@ int main(void)
     ForEachConsumer(
         NewSkipIterator(
             sizeof(int),
-            NewArrayIterator(sizeof(int), intArr, sizeof intArr / sizeof *intArr),
+            NEW_ARRAY_ITERATOR(intArr),
             2),
         sizeof(int),
         IntPrint);

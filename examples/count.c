@@ -11,14 +11,14 @@ int main(void)
     int intArr[] = {1, 2, 3, 4, 5, 6};
 
     size_t total = CountConsumer(
-        NewArrayIterator(sizeof(int), intArr, sizeof intArr / sizeof *intArr),
+        NEW_ARRAY_ITERATOR(intArr),
         sizeof(int));
     printf("total elements: %zu\n", total);
 
     size_t evens = CountConsumer(
         NewFilterIterator(
             sizeof(int),
-            NewArrayIterator(sizeof(int), intArr, sizeof intArr / sizeof *intArr),
+            NEW_ARRAY_ITERATOR(intArr),
             IntIsEven),
         sizeof(int));
     printf("even elements: %zu\n", evens);

@@ -13,8 +13,8 @@ int main(void)
     ForEachConsumer(
         NewChainIterator(
             sizeof(int),
-            NewArrayIterator(sizeof(int), intArrA, sizeof intArrA / sizeof *intArrA),
-            NewArrayIterator(sizeof(int), intArrB, sizeof intArrB / sizeof *intArrB)),
+            NEW_ARRAY_ITERATOR(intArrA),
+            NEW_ARRAY_ITERATOR(intArrB)),
         sizeof(int),
         IntPrint);
 

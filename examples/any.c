@@ -10,14 +10,14 @@ int main(void)
 
     int withEven[] = {1, 3, 5, 8, 9};
     bool hasEven = AnyConsumer(
-        NewArrayIterator(sizeof(int), withEven, sizeof withEven / sizeof *withEven),
+        NEW_ARRAY_ITERATOR(withEven),
         sizeof(int),
         IntIsEven);
     printf("withEven has an even element: %s\n", hasEven ? "true" : "false");
 
     int allOdd[] = {1, 3, 5, 7, 9};
     bool hasEven2 = AnyConsumer(
-        NewArrayIterator(sizeof(int), allOdd, sizeof allOdd / sizeof *allOdd),
+        NEW_ARRAY_ITERATOR(allOdd),
         sizeof(int),
         IntIsEven);
     printf("allOdd has an even element: %s\n", hasEven2 ? "true" : "false");

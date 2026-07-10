@@ -15,7 +15,7 @@ int main(void)
             sizeof(char),
             NewStringIterator(string),
             sizeof(float),
-            NewArrayIterator(sizeof(float), floatArr, sizeof floatArr / sizeof *floatArr)),
+            NEW_ARRAY_ITERATOR(floatArr)),
         sizeof(ZippedItem),
         printZippedItem);
 

@@ -10,14 +10,14 @@ int main(void)
 
     int allEven[] = {2, 4, 6, 8};
     bool result1 = AllConsumer(
-        NewArrayIterator(sizeof(int), allEven, sizeof allEven / sizeof *allEven),
+        NEW_ARRAY_ITERATOR(allEven),
         sizeof(int),
         IntIsEven);
     printf("allEven are all even: %s\n", result1 ? "true" : "false");
 
     int mixed[] = {2, 4, 5, 8};
     bool result2 = AllConsumer(
-        NewArrayIterator(sizeof(int), mixed, sizeof mixed / sizeof *mixed),
+        NEW_ARRAY_ITERATOR(mixed),
         sizeof(int),
         IntIsEven);
     printf("mixed are all even: %s\n", result2 ? "true" : "false");

@@ -12,7 +12,7 @@ int main(void)
     ForEachConsumer(
         NewFilterIterator(
             sizeof(int),
-            NewArrayIterator(sizeof(int), intArr, sizeof intArr / sizeof *intArr),
+            NEW_ARRAY_ITERATOR(intArr),
             IntIsEven),
         sizeof(int),
         IntPrint);

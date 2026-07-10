@@ -11,7 +11,7 @@ int main(void)
 
     int result = 0;
     bool found = FindConsumer(
-        NewArrayIterator(sizeof(int), intArr, sizeof intArr / sizeof *intArr),
+        NEW_ARRAY_ITERATOR(intArr),
         sizeof(int),
         IntIsEven,
         &result);
@@ -23,7 +23,7 @@ int main(void)
 
     int intArrNoEvens[] = {1, 3, 5, 7, 9};
     bool foundNone = FindConsumer(
-        NewArrayIterator(sizeof(int), intArrNoEvens, sizeof intArrNoEvens / sizeof *intArrNoEvens),
+        NEW_ARRAY_ITERATOR(intArrNoEvens),
         sizeof(int),
         IntIsEven,
         &result);

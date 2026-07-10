@@ -10,7 +10,7 @@ int main(void)
 
     int sum = 0;
     ReduceConsumer(
-        NewArrayIterator(sizeof(int), intArr, sizeof intArr / sizeof *intArr),
+        NEW_ARRAY_ITERATOR(intArr),
         sizeof(int),
         sumCombine,
         &sum);
@@ -18,7 +18,7 @@ int main(void)
 
     size_t evenCount = 0;
     ReduceConsumer(
-        NewArrayIterator(sizeof(int), intArr, sizeof intArr / sizeof *intArr),
+        NEW_ARRAY_ITERATOR(intArr),
         sizeof(int),
         countEvenCombine,
         &evenCount);

@@ -11,7 +11,7 @@ int main(void)
     ForEachConsumer(
         NewEnumerateIterator(
             sizeof(int),
-            NewArrayIterator(sizeof(int), intArr, sizeof intArr / sizeof *intArr)),
+            NEW_ARRAY_ITERATOR(intArr)),
         sizeof(EnumeratedItem),
         printEnumeratedItem);
 
