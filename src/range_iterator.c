@@ -25,7 +25,7 @@ bool RangeIteratorNext(void *restrict state, void *restrict out)
 
     if (rangeIt->step == 0)
     {
-        inBounds = true;
+        inBounds = false;
     }
     else
     {
