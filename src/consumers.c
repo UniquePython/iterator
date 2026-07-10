@@ -5,6 +5,9 @@
 
 size_t CountConsumer(Iterator iterator, size_t elemSize)
 {
+    if (IteratorRejectIfInvalid(&iterator))
+        return 0;
+
     size_t count = 0;
 
     void *out = malloc(elemSize);
@@ -25,6 +28,9 @@ size_t CountConsumer(Iterator iterator, size_t elemSize)
 
 bool FindConsumer(Iterator iterator, size_t elemSize, bool (*condition)(const void *elem), void *out)
 {
+    if (IteratorRejectIfInvalid(&iterator))
+        return false;
+
     void *buffer = malloc(elemSize);
     if (!buffer)
     {
@@ -51,6 +57,9 @@ bool FindConsumer(Iterator iterator, size_t elemSize, bool (*condition)(const vo
 
 bool AnyConsumer(Iterator iterator, size_t elemSize, bool (*condition)(const void *elem))
 {
+    if (IteratorRejectIfInvalid(&iterator))
+        return false;
+
     void *buffer = malloc(elemSize);
     if (!buffer)
     {
@@ -76,6 +85,9 @@ bool AnyConsumer(Iterator iterator, size_t elemSize, bool (*condition)(const voi
 
 bool AllConsumer(Iterator iterator, size_t elemSize, bool (*condition)(const void *elem))
 {
+    if (IteratorRejectIfInvalid(&iterator))
+        return false;
+
     void *buffer = malloc(elemSize);
     if (!buffer)
     {
@@ -101,6 +113,9 @@ bool AllConsumer(Iterator iterator, size_t elemSize, bool (*condition)(const voi
 
 void ForEachConsumer(Iterator iterator, size_t elemSize, void (*action)(const void *elem))
 {
+    if (IteratorRejectIfInvalid(&iterator))
+        return;
+
     void *out = malloc(elemSize);
     if (!out)
     {
@@ -117,6 +132,9 @@ void ForEachConsumer(Iterator iterator, size_t elemSize, void (*action)(const vo
 
 void ReduceConsumer(Iterator iterator, size_t elemSize, void (*combine)(const void *restrict elem, void *restrict acc), void *out)
 {
+    if (IteratorRejectIfInvalid(&iterator))
+        return;
+
     void *buffer = malloc(elemSize);
     if (!buffer)
     {
