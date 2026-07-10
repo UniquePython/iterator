@@ -13,6 +13,9 @@ struct enumerate_iterator_t
 
 bool EnumerateIteratorNext(void *restrict state, void *restrict out)
 {
+    if (!state)
+        return false;
+
     EnumerateIterator *enumerateIt = (EnumerateIterator *)state;
 
     if (!out)
@@ -31,6 +34,9 @@ bool EnumerateIteratorNext(void *restrict state, void *restrict out)
 
 void EnumerateIteratorDestroy(void *state)
 {
+    if (!state)
+        return;
+
     EnumerateIterator *enumerateIt = (EnumerateIterator *)state;
     free(enumerateIt->buffer);
     IteratorDestroy(&enumerateIt->inner);

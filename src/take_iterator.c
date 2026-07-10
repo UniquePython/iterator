@@ -14,6 +14,9 @@ struct take_iterator_t
 
 bool TakeIteratorNext(void *restrict state, void *restrict out)
 {
+    if (!state)
+        return false;
+
     TakeIterator *takeIt = (TakeIterator *)state;
 
     if (!out)
@@ -34,6 +37,9 @@ bool TakeIteratorNext(void *restrict state, void *restrict out)
 
 void TakeIteratorDestroy(void *state)
 {
+    if (!state)
+        return;
+
     TakeIterator *takeIt = (TakeIterator *)state;
     free(takeIt->buffer);
     IteratorDestroy(&takeIt->inner);

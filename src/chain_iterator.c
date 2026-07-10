@@ -13,6 +13,9 @@ struct chain_iterator_t
 
 bool ChainIteratorNext(void *restrict state, void *restrict out)
 {
+    if (!state)
+        return false;
+
     ChainIterator *chainIt = (ChainIterator *)state;
 
     if (!out)
@@ -29,6 +32,9 @@ bool ChainIteratorNext(void *restrict state, void *restrict out)
 
 void ChainIteratorDestroy(void *state)
 {
+    if (!state)
+        return;
+
     ChainIterator *chainIt = (ChainIterator *)state;
     free(chainIt->buffer);
     IteratorDestroy(&chainIt->innerA);

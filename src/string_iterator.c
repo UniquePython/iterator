@@ -11,6 +11,9 @@ struct string_iterator_t
 
 bool StringIteratorNext(void *restrict state, void *restrict out)
 {
+    if (!state)
+        return false;
+
     StringIterator *strIt = (StringIterator *)state;
     char *value = (char *)out;
 

@@ -13,6 +13,9 @@ struct map_iterator_t
 
 bool MapIteratorNext(void *restrict state, void *restrict out)
 {
+    if (!state)
+        return false;
+
     MapIterator *mapIt = (MapIterator *)state;
 
     if (!out || !mapIt->transform)
@@ -29,6 +32,9 @@ bool MapIteratorNext(void *restrict state, void *restrict out)
 
 void MapIteratorDestroy(void *state)
 {
+    if (!state)
+        return;
+
     MapIterator *mapIt = (MapIterator *)state;
     free(mapIt->buffer);
     IteratorDestroy(&mapIt->inner);

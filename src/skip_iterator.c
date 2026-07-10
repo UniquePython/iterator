@@ -14,6 +14,9 @@ struct skip_iterator_t
 
 bool SkipIteratorNext(void *restrict state, void *restrict out)
 {
+    if (!state)
+        return false;
+
     SkipIterator *skipIt = (SkipIterator *)state;
 
     if (!out)
@@ -37,6 +40,9 @@ bool SkipIteratorNext(void *restrict state, void *restrict out)
 
 void SkipIteratorDestroy(void *state)
 {
+    if (!state)
+        return;
+
     SkipIterator *skipIt = (SkipIterator *)state;
     free(skipIt->buffer);
     IteratorDestroy(&skipIt->inner);

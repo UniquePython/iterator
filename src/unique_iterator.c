@@ -17,6 +17,9 @@ struct unique_iterator_t
 
 bool UniqueIteratorNext(void *restrict state, void *restrict out)
 {
+    if (!state)
+        return false;
+
     UniqueIterator *uniqueIt = (UniqueIterator *)state;
 
     if (!out || !uniqueIt->equals)
@@ -70,6 +73,9 @@ bool UniqueIteratorNext(void *restrict state, void *restrict out)
 
 void UniqueIteratorDestroy(void *state)
 {
+    if (!state)
+        return;
+
     UniqueIterator *uniqueIt = (UniqueIterator *)state;
     free(uniqueIt->buffer);
     free(uniqueIt->seen);

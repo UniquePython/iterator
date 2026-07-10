@@ -16,6 +16,9 @@ struct range_iterator_t
 
 bool RangeIteratorNext(void *restrict state, void *restrict out)
 {
+    if (!state)
+        return false;
+
     RangeIterator *rangeIt = (RangeIterator *)state;
 
     bool inBounds;

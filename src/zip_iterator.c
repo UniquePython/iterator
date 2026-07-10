@@ -16,6 +16,9 @@ struct zip_iterator_t
 
 bool ZipIteratorNext(void *restrict state, void *restrict out)
 {
+    if (!state)
+        return false;
+
     ZipIterator *zipIt = (ZipIterator *)state;
 
     if (!out)
@@ -37,6 +40,9 @@ bool ZipIteratorNext(void *restrict state, void *restrict out)
 
 void ZipIteratorDestroy(void *state)
 {
+    if (!state)
+        return;
+
     ZipIterator *zipIt = (ZipIterator *)state;
     free(zipIt->bufferA);
     free(zipIt->bufferB);

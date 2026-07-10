@@ -13,6 +13,9 @@ struct filter_iterator_t
 
 bool FilterIteratorNext(void *restrict state, void *restrict out)
 {
+    if (!state)
+        return false;
+
     FilterIterator *filterIt = (FilterIterator *)state;
 
     if (!out || !filterIt->condition)
@@ -32,6 +35,9 @@ bool FilterIteratorNext(void *restrict state, void *restrict out)
 
 void FilterIteratorDestroy(void *state)
 {
+    if (!state)
+        return;
+
     FilterIterator *filterIt = (FilterIterator *)state;
     free(filterIt->buffer);
     IteratorDestroy(&filterIt->inner);
