@@ -5,6 +5,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#define ARRAY_LEN(arr) (sizeof(arr) / sizeof(*(arr)))
+
 #ifndef ITERATOR_FLOAT_EPSILON
 #define ITERATOR_FLOAT_EPSILON 1e-6f
 #endif
