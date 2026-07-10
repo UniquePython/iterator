@@ -48,9 +48,5 @@ Iterator NewStringIterator(const char *string)
     stringIterator->string = string;
     stringIterator->currIdx = 0;
 
-    iterator.state = stringIterator;
-    iterator.next = StringIteratorNext;
-    iterator.destroy = StringIteratorDestroy;
-
-    return iterator;
+    return NewIterator(stringIterator, StringIteratorNext, StringIteratorDestroy);
 }
