@@ -36,7 +36,7 @@ Iterator NewArrayIterator(size_t elemSize, void *arr, size_t arrLen)
 {
     Iterator iterator = {0};
 
-    if (!arr)
+    if (!arr || elemSize == 0)
         return iterator;
 
     ArrayIterator *arrayIterator = malloc(sizeof *arrayIterator);
@@ -49,9 +49,5 @@ Iterator NewArrayIterator(size_t elemSize, void *arr, size_t arrLen)
     arrayIterator->len = arrLen;
     arrayIterator->currIdx = 0;
 
-    iterator.state = arrayIterator;
-    iterator.next = ArrayIteratorNext;
-    iterator.destroy = ArrayIteratorDestroy;
-
-    return iterator;
+    return NewIterator(arrayIterator, ArrayIteratorNext, ArrayIteratorDestroy);
 }
