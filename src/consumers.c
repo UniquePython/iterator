@@ -97,3 +97,19 @@ bool AllConsumer(Iterator iterator, size_t elemSize, bool (*condition)(const voi
 
     return true;
 }
+
+void ForEachConsumer(Iterator iterator, size_t elemSize, void (*action)(const void *elem))
+{
+    void *out = malloc(elemSize);
+    if (!out)
+    {
+        IteratorDestroy(&iterator);
+        return;
+    }
+
+    while (iterator.next(iterator.state, out))
+        action(out);
+
+    IteratorDestroy(&iterator);
+    free(out);
+}
