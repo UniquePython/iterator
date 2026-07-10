@@ -9,7 +9,7 @@ int main(void)
 {
     printf("\n=== Zip Iterator ===\n");
     float floatArr[] = {10.37f, 20.37f, 30.37f, 40.37f};
-    char *string = "hello";
+    const char *string = "hello";
     ForEachConsumer(
         NewZipIterator(
             sizeof(char),

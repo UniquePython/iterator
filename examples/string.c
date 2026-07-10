@@ -6,7 +6,7 @@
 int main(void)
 {
     printf("\n=== String Iterator ===\n");
-    char *string = "hello";
+    const char *string = "hello";
     ForEachConsumer(
         NewStringIterator(string),
         sizeof(char),
