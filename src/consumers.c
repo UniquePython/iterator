@@ -17,6 +17,7 @@ size_t CountConsumer(Iterator iterator, size_t elemSize)
     while (iterator.next(iterator.state, out))
         count++;
 
+    IteratorDestroy(&iterator);
     free(out);
 
     return count;
