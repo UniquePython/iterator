@@ -11,7 +11,7 @@ typedef struct array_iterator_t ArrayIterator;
 
 bool ArrayIteratorNext(void *restrict state, void *restrict out);
 void ArrayIteratorDestroy(void *state);
-Iterator NewArrayIterator(size_t elemSize, void *arr, size_t arrLen);
+Iterator NewArrayIterator(size_t elemSize, const void *arr, size_t arrLen);
 
 #define NEW_ARRAY_ITERATOR(arr) NewArrayIterator(sizeof(*(arr)), (arr), ARRAY_LEN(arr))
 

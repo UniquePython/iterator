@@ -6,7 +6,7 @@
 struct array_iterator_t
 {
     size_t elemSize;
-    void *arr;
+    const void *arr;
     size_t len;
     size_t currIdx;
 };
@@ -18,8 +18,8 @@ bool ArrayIteratorNext(void *restrict state, void *restrict out)
     if (!arrIt || !out || arrIt->currIdx >= arrIt->len)
         return false;
 
-    char *base = (char *)arrIt->arr;
-    void *srcElem = base + (arrIt->elemSize * arrIt->currIdx);
+    const char *base = (const char *)arrIt->arr;
+    const void *srcElem = base + (arrIt->elemSize * arrIt->currIdx);
 
     memcpy(out, srcElem, arrIt->elemSize);
 
@@ -32,7 +32,7 @@ void ArrayIteratorDestroy(void *state)
     free(state);
 }
 
-Iterator NewArrayIterator(size_t elemSize, void *arr, size_t arrLen)
+Iterator NewArrayIterator(size_t elemSize, const void *arr, size_t arrLen)
 {
     Iterator iterator = {0};
 
