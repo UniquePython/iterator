@@ -63,4 +63,15 @@ static inline bool intEqual(const void *a, const void *b)
     return DEREF(const int, a) == DEREF(const int, b);
 }
 
+static inline void sumCombine(const void *restrict elem, void *restrict acc)
+{
+    DEREF(int, acc) += DEREF(const int, elem);
+}
+
+static inline void countEvenCombine(const void *restrict elem, void *restrict acc)
+{
+    if (isEven(elem))
+        DEREF(size_t, acc) += 1;
+}
+
 #endif

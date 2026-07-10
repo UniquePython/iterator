@@ -114,3 +114,19 @@ void ForEachConsumer(Iterator iterator, size_t elemSize, void (*action)(const vo
     IteratorDestroy(&iterator);
     free(out);
 }
+
+void ReduceConsumer(Iterator iterator, size_t elemSize, void (*combine)(const void *restrict elem, void *restrict acc), void *out)
+{
+    void *buffer = malloc(elemSize);
+    if (!buffer)
+    {
+        IteratorDestroy(&iterator);
+        return;
+    }
+
+    while (iterator.next(iterator.state, buffer))
+        combine(buffer, out);
+
+    IteratorDestroy(&iterator);
+    free(buffer);
+}

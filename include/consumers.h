@@ -8,5 +8,6 @@ bool FindConsumer(Iterator iterator, size_t elemSize, bool (*condition)(const vo
 bool AnyConsumer(Iterator iterator, size_t elemSize, bool (*condition)(const void *elem));
 bool AllConsumer(Iterator iterator, size_t elemSize, bool (*condition)(const void *elem));
 void ForEachConsumer(Iterator iterator, size_t elemSize, void (*action)(const void *elem));
+void ReduceConsumer(Iterator iterator, size_t elemSize, void (*combine)(const void *restrict elem, void *restrict acc), void *out);
 
 #endif
