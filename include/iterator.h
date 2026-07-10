@@ -14,5 +14,8 @@ typedef struct iterator_t
 } Iterator;
 
 void IteratorDestroy(Iterator *iterator);
+bool IteratorIsValid(Iterator iterator);
+bool IteratorRejectIfInvalid(Iterator *iterator);
+Iterator NewIterator(void *state, bool (*next)(void *restrict state, void *restrict out), void (*destroy)(void *state));
 
 #endif
