@@ -50,6 +50,9 @@ Iterator NewTakeIterator(size_t inElemSize, Iterator inner, size_t nToYield)
 {
     Iterator iterator = {0};
 
+    if (inElemSize == 0)
+        return iterator;
+
     if (IteratorRejectIfInvalid(&inner))
         return iterator;
 

@@ -47,6 +47,9 @@ Iterator NewEnumerateIterator(size_t inElemSize, Iterator inner)
 {
     Iterator iterator = {0};
 
+    if (inElemSize == 0)
+        return iterator;
+
     if (IteratorRejectIfInvalid(&inner))
         return iterator;
 

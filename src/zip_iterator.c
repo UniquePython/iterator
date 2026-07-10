@@ -55,6 +55,9 @@ Iterator NewZipIterator(size_t elemSizeA, Iterator innerA, size_t elemSizeB, Ite
 {
     Iterator iterator = {0};
 
+    if (elemSizeA == 0 || elemSizeB == 0)
+        return iterator;
+
     if (IteratorRejectIfInvalid(&innerA))
     {
         IteratorDestroy(&innerB);
