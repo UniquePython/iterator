@@ -47,3 +47,53 @@ bool FindConsumer(Iterator iterator, size_t elemSize, bool (*condition)(const vo
 
     return false;
 }
+
+bool AnyConsumer(Iterator iterator, size_t elemSize, bool (*condition)(const void *elem))
+{
+    void *buffer = malloc(elemSize);
+    if (!buffer)
+    {
+        IteratorDestroy(&iterator);
+        return false;
+    }
+
+    while (iterator.next(iterator.state, buffer))
+    {
+        if (condition(buffer))
+        {
+            IteratorDestroy(&iterator);
+            free(buffer);
+            return true;
+        }
+    }
+
+    IteratorDestroy(&iterator);
+    free(buffer);
+
+    return false;
+}
+
+bool AllConsumer(Iterator iterator, size_t elemSize, bool (*condition)(const void *elem))
+{
+    void *buffer = malloc(elemSize);
+    if (!buffer)
+    {
+        IteratorDestroy(&iterator);
+        return false;
+    }
+
+    while (iterator.next(iterator.state, buffer))
+    {
+        if (!condition(buffer))
+        {
+            IteratorDestroy(&iterator);
+            free(buffer);
+            return false;
+        }
+    }
+
+    IteratorDestroy(&iterator);
+    free(buffer);
+
+    return true;
+}

@@ -5,5 +5,7 @@
 
 size_t CountConsumer(Iterator iterator, size_t elemSize);
 bool FindConsumer(Iterator iterator, size_t elemSize, bool (*condition)(const void *elem), void *out);
+bool AnyConsumer(Iterator iterator, size_t elemSize, bool (*condition)(const void *elem));
+bool AllConsumer(Iterator iterator, size_t elemSize, bool (*condition)(const void *elem));
 
 #endif
