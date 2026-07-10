@@ -2,6 +2,7 @@
 #include "array_iterator.h"
 #include "string_iterator.h"
 #include "iterator.h"
+#include "consumers.h"
 #include "common/helpers.h"
 
 int main(void)
@@ -12,8 +13,7 @@ int main(void)
     char *string = "hello";
     Iterator stringIt = NewStringIterator(string);
     Iterator zipIt = NewZipIterator(sizeof(char), stringIt, sizeof(float), floatIt);
-    printAll(zipIt, sizeof(ZippedItem), printZippedItem);
-    IteratorDestroy(&zipIt);
+    ForEachConsumer(zipIt, sizeof(ZippedItem), printZippedItem);
 
     return 0;
 }
