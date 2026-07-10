@@ -2,6 +2,7 @@
 #include "array_iterator.h"
 #include "iterator.h"
 #include "consumers.h"
+#include "builtins.h"
 #include "common/helpers.h"
 
 int main(void)
@@ -12,9 +13,9 @@ int main(void)
         NewFilterIterator(
             sizeof(int),
             NewArrayIterator(sizeof(int), intArr, sizeof intArr / sizeof *intArr),
-            isEven),
+            IntIsEven),
         sizeof(int),
-        printInt);
+        IntPrint);
 
     return 0;
 }

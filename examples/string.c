@@ -1,6 +1,7 @@
 #include "string_iterator.h"
 #include "iterator.h"
 #include "consumers.h"
+#include "builtins.h"
 #include "common/helpers.h"
 
 int main(void)
@@ -10,7 +11,7 @@ int main(void)
     ForEachConsumer(
         NewStringIterator(string),
         sizeof(char),
-        printChar);
+        CharPrint);
 
     return 0;
 }

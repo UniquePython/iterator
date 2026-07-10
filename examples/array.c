@@ -1,6 +1,7 @@
 #include "array_iterator.h"
 #include "iterator.h"
 #include "consumers.h"
+#include "builtins.h"
 #include "common/helpers.h"
 
 int main(void)
@@ -10,14 +11,14 @@ int main(void)
     ForEachConsumer(
         NewArrayIterator(sizeof(int), intArr, sizeof intArr / sizeof *intArr),
         sizeof(int),
-        printInt);
+        IntPrint);
 
     printf("\n=== Array Iterator: float ===\n");
     float floatArr[] = {10.5f, 20.5f, 30.5f, 40.5f};
     ForEachConsumer(
         NewArrayIterator(sizeof(float), floatArr, sizeof floatArr / sizeof *floatArr),
         sizeof(float),
-        printFloat);
+        FloatPrint);
 
     return 0;
 }

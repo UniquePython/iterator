@@ -1,6 +1,7 @@
 #include "array_iterator.h"
 #include "iterator.h"
 #include "consumers.h"
+#include "builtins.h"
 #include "common/helpers.h"
 
 int main(void)
@@ -12,7 +13,7 @@ int main(void)
     bool found = FindConsumer(
         NewArrayIterator(sizeof(int), intArr, sizeof intArr / sizeof *intArr),
         sizeof(int),
-        isEven,
+        IntIsEven,
         &result);
 
     if (found)
@@ -24,7 +25,7 @@ int main(void)
     bool foundNone = FindConsumer(
         NewArrayIterator(sizeof(int), intArrNoEvens, sizeof intArrNoEvens / sizeof *intArrNoEvens),
         sizeof(int),
-        isEven,
+        IntIsEven,
         &result);
 
     printf("found: %s\n", foundNone ? "true" : "false");

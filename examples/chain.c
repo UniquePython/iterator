@@ -2,6 +2,7 @@
 #include "array_iterator.h"
 #include "iterator.h"
 #include "consumers.h"
+#include "builtins.h"
 #include "common/helpers.h"
 
 int main(void)
@@ -15,7 +16,7 @@ int main(void)
             NewArrayIterator(sizeof(int), intArrA, sizeof intArrA / sizeof *intArrA),
             NewArrayIterator(sizeof(int), intArrB, sizeof intArrB / sizeof *intArrB)),
         sizeof(int),
-        printInt);
+        IntPrint);
 
     return 0;
 }

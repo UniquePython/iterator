@@ -1,6 +1,7 @@
 #include "range_iterator.h"
 #include "iterator.h"
 #include "consumers.h"
+#include "builtins.h"
 #include "common/helpers.h"
 
 int main(void)
@@ -9,13 +10,13 @@ int main(void)
     ForEachConsumer(
         NewRangeIterator(2, 10, 2, true),
         sizeof(int64_t),
-        printI64);
+        I64Print);
 
     printf("\n=== Range Iterator: exclusive ===\n");
     ForEachConsumer(
         NewRangeIterator(2, 10, 2, false),
         sizeof(int64_t),
-        printI64);
+        I64Print);
 
     return 0;
 }
