@@ -40,16 +40,34 @@ Iterator NewChainIterator(size_t inElemSize, Iterator innerA, Iterator innerB)
 {
     Iterator iterator = {0};
 
+    if (IteratorRejectIfInvalid(&innerA))
+    {
+        IteratorDestroy(&innerB);
+        return iterator;
+    }
+
+    if (IteratorRejectIfInvalid(&innerB))
+    {
+        IteratorDestroy(&innerA);
+        return iterator;
+    }
+
     ChainIterator *chainIterator = malloc(sizeof *chainIterator);
 
     if (!chainIterator)
+    {
+        IteratorDestroy(&innerA);
+        IteratorDestroy(&innerB);
         return iterator;
+    }
 
     void *buffer = malloc(inElemSize);
 
     if (!buffer)
     {
         free(chainIterator);
+        IteratorDestroy(&innerA);
+        IteratorDestroy(&innerB);
         return iterator;
     }
 
@@ -58,9 +76,5 @@ Iterator NewChainIterator(size_t inElemSize, Iterator innerA, Iterator innerB)
     chainIterator->innerA = innerA;
     chainIterator->innerB = innerB;
 
-    iterator.state = chainIterator;
-    iterator.next = ChainIteratorNext;
-    iterator.destroy = ChainIteratorDestroy;
-
-    return iterator;
+    return NewIterator(chainIterator, ChainIteratorNext, ChainIteratorDestroy);
 }

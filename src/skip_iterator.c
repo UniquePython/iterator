@@ -47,16 +47,23 @@ Iterator NewSkipIterator(size_t inElemSize, Iterator inner, size_t nToSkip)
 {
     Iterator iterator = {0};
 
+    if (IteratorRejectIfInvalid(&inner))
+        return iterator;
+
     SkipIterator *skipIterator = malloc(sizeof *skipIterator);
 
     if (!skipIterator)
+    {
+        IteratorDestroy(&inner);
         return iterator;
+    }
 
     void *buffer = malloc(inElemSize);
 
     if (!buffer)
     {
         free(skipIterator);
+        IteratorDestroy(&inner);
         return iterator;
     }
 
@@ -66,9 +73,5 @@ Iterator NewSkipIterator(size_t inElemSize, Iterator inner, size_t nToSkip)
     skipIterator->nToSkip = nToSkip;
     skipIterator->nSkipped = 0;
 
-    iterator.state = skipIterator;
-    iterator.next = SkipIteratorNext;
-    iterator.destroy = SkipIteratorDestroy;
-
-    return iterator;
+    return NewIterator(skipIterator, SkipIteratorNext, SkipIteratorDestroy);
 }

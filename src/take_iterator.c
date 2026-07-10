@@ -44,16 +44,23 @@ Iterator NewTakeIterator(size_t inElemSize, Iterator inner, size_t nToYield)
 {
     Iterator iterator = {0};
 
+    if (IteratorRejectIfInvalid(&inner))
+        return iterator;
+
     TakeIterator *takeIterator = malloc(sizeof *takeIterator);
 
     if (!takeIterator)
+    {
+        IteratorDestroy(&inner);
         return iterator;
+    }
 
     void *buffer = malloc(inElemSize);
 
     if (!buffer)
     {
         free(takeIterator);
+        IteratorDestroy(&inner);
         return iterator;
     }
 
@@ -63,9 +70,5 @@ Iterator NewTakeIterator(size_t inElemSize, Iterator inner, size_t nToYield)
     takeIterator->nToYield = nToYield;
     takeIterator->nYielded = 0;
 
-    iterator.state = takeIterator;
-    iterator.next = TakeIteratorNext;
-    iterator.destroy = TakeIteratorDestroy;
-
-    return iterator;
+    return NewIterator(takeIterator, TakeIteratorNext, TakeIteratorDestroy);
 }

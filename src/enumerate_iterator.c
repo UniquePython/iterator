@@ -41,16 +41,23 @@ Iterator NewEnumerateIterator(size_t inElemSize, Iterator inner)
 {
     Iterator iterator = {0};
 
+    if (IteratorRejectIfInvalid(&inner))
+        return iterator;
+
     EnumerateIterator *enumerateIterator = malloc(sizeof *enumerateIterator);
 
     if (!enumerateIterator)
+    {
+        IteratorDestroy(&inner);
         return iterator;
+    }
 
     void *buffer = malloc(inElemSize);
 
     if (!buffer)
     {
         free(enumerateIterator);
+        IteratorDestroy(&inner);
         return iterator;
     }
 
@@ -59,9 +66,5 @@ Iterator NewEnumerateIterator(size_t inElemSize, Iterator inner)
     enumerateIterator->inner = inner;
     enumerateIterator->index = 0;
 
-    iterator.state = enumerateIterator;
-    iterator.next = EnumerateIteratorNext;
-    iterator.destroy = EnumerateIteratorDestroy;
-
-    return iterator;
+    return NewIterator(enumerateIterator, EnumerateIteratorNext, EnumerateIteratorDestroy);
 }

@@ -39,16 +39,23 @@ Iterator NewMapIterator(size_t inElemSize, Iterator inner, void (*transform)(con
 {
     Iterator iterator = {0};
 
+    if (IteratorRejectIfInvalid(&inner))
+        return iterator;
+
     MapIterator *mapIterator = malloc(sizeof *mapIterator);
 
     if (!mapIterator)
+    {
+        IteratorDestroy(&inner);
         return iterator;
+    }
 
     void *buffer = malloc(inElemSize);
 
     if (!buffer)
     {
         free(mapIterator);
+        IteratorDestroy(&inner);
         return iterator;
     }
 
@@ -57,9 +64,5 @@ Iterator NewMapIterator(size_t inElemSize, Iterator inner, void (*transform)(con
     mapIterator->inner = inner;
     mapIterator->transform = transform;
 
-    iterator.state = mapIterator;
-    iterator.next = MapIteratorNext;
-    iterator.destroy = MapIteratorDestroy;
-
-    return iterator;
+    return NewIterator(mapIterator, MapIteratorNext, MapIteratorDestroy);
 }

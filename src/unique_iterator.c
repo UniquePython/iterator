@@ -81,16 +81,23 @@ Iterator NewUniqueIterator(size_t inElemSize, Iterator inner, bool (*equals)(con
 {
     Iterator iterator = {0};
 
+    if (IteratorRejectIfInvalid(&inner))
+        return iterator;
+
     UniqueIterator *uniqueIterator = malloc(sizeof *uniqueIterator);
 
     if (!uniqueIterator)
+    {
+        IteratorDestroy(&inner);
         return iterator;
+    }
 
     void *buffer = malloc(inElemSize);
 
     if (!buffer)
     {
         free(uniqueIterator);
+        IteratorDestroy(&inner);
         return iterator;
     }
 
@@ -103,9 +110,5 @@ Iterator NewUniqueIterator(size_t inElemSize, Iterator inner, bool (*equals)(con
     uniqueIterator->seenCount = 0;
     uniqueIterator->seenCapacity = 0;
 
-    iterator.state = uniqueIterator;
-    iterator.next = UniqueIteratorNext;
-    iterator.destroy = UniqueIteratorDestroy;
-
-    return iterator;
+    return NewIterator(uniqueIterator, UniqueIteratorNext, UniqueIteratorDestroy);
 }

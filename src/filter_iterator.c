@@ -42,16 +42,23 @@ Iterator NewFilterIterator(size_t inElemSize, Iterator inner, bool (*condition)(
 {
     Iterator iterator = {0};
 
+    if (IteratorRejectIfInvalid(&inner))
+        return iterator;
+
     FilterIterator *filterIterator = malloc(sizeof *filterIterator);
 
     if (!filterIterator)
+    {
+        IteratorDestroy(&inner);
         return iterator;
+    }
 
     void *buffer = malloc(inElemSize);
 
     if (!buffer)
     {
         free(filterIterator);
+        IteratorDestroy(&inner);
         return iterator;
     }
 
@@ -60,9 +67,5 @@ Iterator NewFilterIterator(size_t inElemSize, Iterator inner, bool (*condition)(
     filterIterator->inner = inner;
     filterIterator->condition = condition;
 
-    iterator.state = filterIterator;
-    iterator.next = FilterIteratorNext;
-    iterator.destroy = FilterIteratorDestroy;
-
-    return iterator;
+    return NewIterator(filterIterator, FilterIteratorNext, FilterIteratorDestroy);
 }

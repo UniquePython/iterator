@@ -49,16 +49,34 @@ Iterator NewZipIterator(size_t elemSizeA, Iterator innerA, size_t elemSizeB, Ite
 {
     Iterator iterator = {0};
 
+    if (IteratorRejectIfInvalid(&innerA))
+    {
+        IteratorDestroy(&innerB);
+        return iterator;
+    }
+
+    if (IteratorRejectIfInvalid(&innerB))
+    {
+        IteratorDestroy(&innerA);
+        return iterator;
+    }
+
     ZipIterator *zipIterator = malloc(sizeof *zipIterator);
 
     if (!zipIterator)
+    {
+        IteratorDestroy(&innerA);
+        IteratorDestroy(&innerB);
         return iterator;
+    }
 
     void *bufferA = malloc(elemSizeA);
 
     if (!bufferA)
     {
         free(zipIterator);
+        IteratorDestroy(&innerA);
+        IteratorDestroy(&innerB);
         return iterator;
     }
 
@@ -68,6 +86,8 @@ Iterator NewZipIterator(size_t elemSizeA, Iterator innerA, size_t elemSizeB, Ite
     {
         free(bufferA);
         free(zipIterator);
+        IteratorDestroy(&innerA);
+        IteratorDestroy(&innerB);
         return iterator;
     }
 
@@ -79,9 +99,5 @@ Iterator NewZipIterator(size_t elemSizeA, Iterator innerA, size_t elemSizeB, Ite
     zipIterator->bufferB = bufferB;
     zipIterator->innerB = innerB;
 
-    iterator.state = zipIterator;
-    iterator.next = ZipIteratorNext;
-    iterator.destroy = ZipIteratorDestroy;
-
-    return iterator;
+    return NewIterator(zipIterator, ZipIteratorNext, ZipIteratorDestroy);
 }
