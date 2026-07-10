@@ -8,11 +8,14 @@ int main(void)
 {
     printf("\n=== Chain Iterator ===\n");
     int intArrA[] = {10, 20, 30, 40};
-    Iterator intItA = NewArrayIterator(sizeof(int), intArrA, sizeof intArrA / sizeof *intArrA);
     int intArrB[] = {60, 70, 80, 90};
-    Iterator intItB = NewArrayIterator(sizeof(int), intArrB, sizeof intArrB / sizeof *intArrB);
-    Iterator chainIt = NewChainIterator(sizeof(int), intItA, intItB);
-    ForEachConsumer(chainIt, sizeof(int), printInt);
+    ForEachConsumer(
+        NewChainIterator(
+            sizeof(int),
+            NewArrayIterator(sizeof(int), intArrA, sizeof intArrA / sizeof *intArrA),
+            NewArrayIterator(sizeof(int), intArrB, sizeof intArrB / sizeof *intArrB)),
+        sizeof(int),
+        printInt);
 
     return 0;
 }

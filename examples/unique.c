@@ -8,9 +8,13 @@ int main(void)
 {
     printf("\n=== Unique Iterator ===\n");
     int intArr[] = {10, 20, 20, 30, 30, 30, 40, 40, 40, 40};
-    Iterator intIt = NewArrayIterator(sizeof(int), intArr, sizeof intArr / sizeof *intArr);
-    Iterator uniqueIt = NewUniqueIterator(sizeof(int), intIt, intEqual);
-    ForEachConsumer(uniqueIt, sizeof(int), printInt);
+    ForEachConsumer(
+        NewUniqueIterator(
+            sizeof(int),
+            NewArrayIterator(sizeof(int), intArr, sizeof intArr / sizeof *intArr),
+            intEqual),
+        sizeof(int),
+        printInt);
 
     return 0;
 }

@@ -8,9 +8,13 @@ int main(void)
 {
     printf("\n=== Take Iterator ===\n");
     int intArr[] = {10, 20, 30, 40};
-    Iterator intIt = NewArrayIterator(sizeof(int), intArr, sizeof intArr / sizeof *intArr);
-    Iterator takeIt = NewTakeIterator(sizeof(int), intIt, 2);
-    ForEachConsumer(takeIt, sizeof(int), printInt);
+    ForEachConsumer(
+        NewTakeIterator(
+            sizeof(int),
+            NewArrayIterator(sizeof(int), intArr, sizeof intArr / sizeof *intArr),
+            2),
+        sizeof(int),
+        printInt);
 
     return 0;
 }

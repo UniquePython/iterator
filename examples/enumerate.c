@@ -8,9 +8,12 @@ int main(void)
 {
     printf("\n=== Enumerate Iterator ===\n");
     int intArr[] = {10, 20, 30, 40};
-    Iterator intIt = NewArrayIterator(sizeof(int), intArr, sizeof intArr / sizeof *intArr);
-    Iterator enumerateIt = NewEnumerateIterator(sizeof(int), intIt);
-    ForEachConsumer(enumerateIt, sizeof(EnumeratedItem), printEnumeratedItem);
+    ForEachConsumer(
+        NewEnumerateIterator(
+            sizeof(int),
+            NewArrayIterator(sizeof(int), intArr, sizeof intArr / sizeof *intArr)),
+        sizeof(EnumeratedItem),
+        printEnumeratedItem);
 
     return 0;
 }

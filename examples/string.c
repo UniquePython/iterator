@@ -7,8 +7,10 @@ int main(void)
 {
     printf("\n=== String Iterator ===\n");
     char *string = "hello";
-    Iterator stringIt = NewStringIterator(string);
-    ForEachConsumer(stringIt, sizeof(char), printChar);
+    ForEachConsumer(
+        NewStringIterator(string),
+        sizeof(char),
+        printChar);
 
     return 0;
 }
