@@ -46,9 +46,6 @@ Iterator NewChainIterator(size_t inElemSize, Iterator innerA, Iterator innerB)
 {
     Iterator iterator = {0};
 
-    if (inElemSize == 0)
-        return iterator;
-
     if (IteratorRejectIfInvalid(&innerA))
     {
         IteratorDestroy(&innerB);
@@ -60,6 +57,9 @@ Iterator NewChainIterator(size_t inElemSize, Iterator innerA, Iterator innerB)
         IteratorDestroy(&innerA);
         return iterator;
     }
+
+    if (inElemSize == 0)
+        return iterator;
 
     ChainIterator *chainIterator = malloc(sizeof *chainIterator);
 
