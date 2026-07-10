@@ -9,9 +9,7 @@ int main(void)
     printf("\n=== Enumerate Iterator ===\n");
     int intArr[] = {10, 20, 30, 40};
     ForEachConsumer(
-        NewEnumerateIterator(
-            sizeof(int),
-            NEW_ARRAY_ITERATOR(intArr)),
+        ENUMERATE_ARR(intArr),
         sizeof(EnumeratedItem),
         printEnumeratedItem);
 

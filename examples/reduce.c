@@ -9,19 +9,11 @@ int main(void)
     int intArr[] = {1, 2, 3, 4, 5, 6};
 
     int sum = 0;
-    ReduceConsumer(
-        NEW_ARRAY_ITERATOR(intArr),
-        sizeof(int),
-        sumCombine,
-        &sum);
+    REDUCE_ARR(intArr, sumCombine, &sum);
     printf("sum: %d\n", sum);
 
     size_t evenCount = 0;
-    ReduceConsumer(
-        NEW_ARRAY_ITERATOR(intArr),
-        sizeof(int),
-        countEvenCombine,
-        &evenCount);
+    REDUCE_ARR(intArr, countEvenCombine, &evenCount);
     printf("even count: %zu\n", evenCount);
 
     return 0;

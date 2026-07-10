@@ -10,10 +10,7 @@ int main(void)
     printf("\n=== Unique Iterator ===\n");
     int intArr[] = {10, 20, 20, 30, 30, 30, 40, 40, 40, 40};
     ForEachConsumer(
-        NewUniqueIterator(
-            sizeof(int),
-            NEW_ARRAY_ITERATOR(intArr),
-            IntEqual),
+        UNIQUE_ARR(intArr, IntEqual),
         sizeof(int),
         IntPrint);
 

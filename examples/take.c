@@ -10,10 +10,7 @@ int main(void)
     printf("\n=== Take Iterator ===\n");
     int intArr[] = {10, 20, 30, 40};
     ForEachConsumer(
-        NewTakeIterator(
-            sizeof(int),
-            NEW_ARRAY_ITERATOR(intArr),
-            2),
+        TAKE_ARR(intArr, 2),
         sizeof(int),
         IntPrint);
 

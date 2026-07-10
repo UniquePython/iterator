@@ -10,10 +10,7 @@ int main(void)
     printf("\n=== Filter Iterator ===\n");
     int intArr[] = {1, 2, 3, 4};
     ForEachConsumer(
-        NewFilterIterator(
-            sizeof(int),
-            NEW_ARRAY_ITERATOR(intArr),
-            IntIsEven),
+        FILTER_ARR(intArr, IntIsEven),
         sizeof(int),
         IntPrint);
 

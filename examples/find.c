@@ -10,11 +10,7 @@ int main(void)
     int intArr[] = {1, 3, 5, 8, 9};
 
     int result = 0;
-    bool found = FindConsumer(
-        NEW_ARRAY_ITERATOR(intArr),
-        sizeof(int),
-        IntIsEven,
-        &result);
+    bool found = FIND_ARR(intArr, IntIsEven, &result);
 
     if (found)
         printf("found even element: %d\n", result);
@@ -22,11 +18,7 @@ int main(void)
         printf("no even element found\n");
 
     int intArrNoEvens[] = {1, 3, 5, 7, 9};
-    bool foundNone = FindConsumer(
-        NEW_ARRAY_ITERATOR(intArrNoEvens),
-        sizeof(int),
-        IntIsEven,
-        &result);
+    bool foundNone = FIND_ARR(intArrNoEvens, IntIsEven, &result);
 
     printf("found: %s\n", foundNone ? "true" : "false");
 
